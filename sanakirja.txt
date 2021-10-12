@@ -1,0 +1,4 @@
+kyllä yes
+ei no
+koira dog
+kala fish
