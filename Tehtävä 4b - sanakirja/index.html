@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="tyyli.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $('[name="Submit"]').click(function () {
+          //tähän omaa koodia
+
+          $.ajax({
+            url: "http://localhost:3000/word/",
+            type: "POST",
+            dataType: "json",
+            data: $("#form").serialize(),
+            success: function (result) {
+              console.log(result);
+            },
+          });
+        });
+      });
+      $(document).ready(function () {
+        $('[name="Find"]').click(function () {
+          //tähän omaa koodia
+
+          $.ajax({
+            url: "http://localhost:3000/word/find",
+            type: "GET",
+            dataType: "json",
+            data: $("#form2").serialize(),
+            success: function (result) {
+              vastaus.innerHTML = "Käännös: "+result;
+              console.log(result);
+            },
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Sanakirja</h1>
+    <form id="form" name="form">
+      <th>Sanapari</th>
+      <td>
+        <input
+          name="fin"
+          id="fin"
+          type="text"
+          value=""
+          maxlength="35"
+          size="35"
+        />
+      </td>
+      <td>
+        <input
+          name="eng"
+          id="eng"
+          type="text"
+          value=""
+          maxlength="35"
+          size="35"
+        />
+      </td>
+
+      <td>
+        <input name="Submit" type="button" value="Tallenna" />
+        
+      </td>
+    </form>
+  <div class="alempi">
+    <form id="form2" name="form2">
+      <th>Etsi sana: </th>
+      <td>
+        <input
+          name="fin"
+          id="fin"
+          type="text"
+          value=""
+          maxlength="35"
+          size="35"
+        />
+        <input name="Find" type="button" value="Find" />
+      </td>
+      <td>
+        </td>
+        <div>
+        <label name="vastaus" id="vastaus" type="text" value="vastaus näkyy tässä" >
+        </div>
+      </td>
+
+     
+    </form>
+    </div>
+  </body>
+</html>
